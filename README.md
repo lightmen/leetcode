@@ -1,2 +1,2 @@
 # leetcode
-the algorithm codes of LeeCode OJ(https://leetcode.com/)
+the algorithm codes of LeetCode OJ(https://leetcode.com/)

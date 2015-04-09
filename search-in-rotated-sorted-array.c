@@ -1,4 +1,4 @@
-iint search(int A[], int n, int target) {
+int search(int A[], int n, int target) {
     int mid,begin,end;
     int rotated;
     rotated = n - 1;

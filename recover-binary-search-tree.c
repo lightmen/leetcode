@@ -7,10 +7,10 @@
   * };
  */
 struct TreeNode *t1,*t2,*prev;
-void pre_order(struct TreeNode *root)
+void in_order(struct TreeNode *root)
 {
     if(root->left)
-        pre_order(root->left);
+        in_order(root->left);
     if(prev && prev->val > root->val){
         t2 = root;
         if(t1 == NULL)
@@ -18,7 +18,7 @@ void pre_order(struct TreeNode *root)
     }
     prev = root;
     if(root->right)
-        pre_order(root->right);
+        in_order(root->right);
 }
 void recoverTree(struct TreeNode *root) {
     int tmp;
@@ -27,7 +27,7 @@ void recoverTree(struct TreeNode *root) {
     prev = NULL;
     
     if(root)
-        pre_order(root);
+        in_order(root);
     if(t1 && t2){
         tmp = t1->val;
         t1->val = t2->val;

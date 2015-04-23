@@ -28,6 +28,7 @@ public:
             vr = recusive(i+1,end);
             int l = vl->size();
             int r = vr->size();
+
             for(int j = 0; j < l; ++j)
                 for(int k = 0; k < r; ++k){
                     root = new TreeNode(i);

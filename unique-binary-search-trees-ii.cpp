@@ -40,6 +40,7 @@ public:
         }
         return v;
     }
+
     vector<TreeNode *> generateTrees(int n) {
         vector<TreeNode *> *ret = recusive(1,n);
         return *ret;

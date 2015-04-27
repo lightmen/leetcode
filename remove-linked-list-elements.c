@@ -15,7 +15,7 @@ struct ListNode* removeElements(struct ListNode* head, int val) {
     while(head){
         if(head->val == val){
             prev->next = head->next;
-            free(head);
+            //free(head);
             head = prev;
         }
         prev = head;

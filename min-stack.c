@@ -23,6 +23,7 @@ void minStackPush(MinStack *stack, int element) {
 
 void minStackPop(MinStack *stack) {
     int top = minStackTop(stack);
+
     if(top <= minStackGetMin(stack))
         stack->top_min--;
 
@@ -38,5 +39,5 @@ int minStackGetMin(MinStack *stack) {
 }
 
 void minStackDestroy(MinStack *stack) {
-  
+    //we can call free() to free stack->data and stack->min. or the runtime error will happened
 }

@@ -39,5 +39,5 @@ int minStackGetMin(MinStack *stack) {
 }
 
 void minStackDestroy(MinStack *stack) {
-    //we can call free() to free stack->data and stack->min. or the runtime error will happened
+    //we can't call free() to free stack->data and stack->min. or the runtime error will happened
 }

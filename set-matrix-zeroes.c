@@ -16,13 +16,11 @@ void setZeroes(int** matrix, int m, int n) {
     }
     
     for(i = 0; i < m; ++i)
-        if(row[i]){
-            for(j = 0; j < n; ++j)
+        for(j = 0; j < n; ++j){
+            if(row[i])
+                matrix[i][j] = 0;
+            if(col[j])
                 matrix[i][j] = 0;
         }
-    for(j = 0; j < n; ++j)
-        if(col[j]){
-            for(i = 0; i < m; ++i)
-                matrix[i][j] = 0;
-        }
+    
 }

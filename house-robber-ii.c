@@ -1,6 +1,4 @@
 int rob(int* nums, int numsSize) {
-    if(numsSize == 1)
-        return nums[0];
     int *dp0,*dp1;
     int i,ret;
     dp0 = (int *)malloc(sizeof(int) * (numsSize + 1));

@@ -20,7 +20,6 @@ public:
             vret.push_back(vi);
         }
 
-        vector<int> ret(vret[rowIndex].begin(),vret[rowIndex].end());
-        return ret;
+        return vi;
     }
 };

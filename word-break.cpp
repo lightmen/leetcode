@@ -3,6 +3,7 @@ public:
     bool wordBreak(string s, unordered_set<string>& wordDict) {
         int len = s.size();
         bool *flag = new bool[len];
+        bool ret;
         memset(flag,0,sizeof(bool) * len);
 
         for(int i = 0; i < len; ++i){
@@ -19,6 +20,9 @@ public:
             }
         }
 
-        return flag[len-1];
+        ret = flag[len-1];
+        delete flag;
+
+        return ret;
     }
 };

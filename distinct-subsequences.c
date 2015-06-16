@@ -5,9 +5,6 @@ int numDistinct(char* s, char* t) {
     int i,j;
     int ret;
 
-    if(lens < lent)
-        return 0;
-
     dp = (int **)malloc(sizeof(int *) * (lens+1));
     for(i = 0; i <= lens; ++i){
         dp[i] = (int *)malloc(sizeof(int) * (lent + 1));

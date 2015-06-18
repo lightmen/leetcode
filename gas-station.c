@@ -12,9 +12,9 @@ int canCompleteCircuit(int* gas, int gasSize, int* cost, int costSize) {
             ret = i+1;
         }
     }
+    
+    if(sum < 0)
+       ret = -1;
 
-    if(sum >= 0)
-        return ret;
-    else
-        return -1;
+    return ret;
 }

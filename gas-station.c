@@ -1,6 +1,6 @@
 int canCompleteCircuit(int* gas, int gasSize, int* cost, int costSize) {
     int i;
-    int cur;
+    int cur = 0;
     int ret = 0;
     int sum = 0;
 

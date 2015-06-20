@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void rec(vector<vector<int>>& vret, vector<int>& nums, vector<int> vt, int *flag, int count)
+    void rec(vector<vector<int>>& vret, vector<int>& nums, vector<int>& vt, int *flag, int count)
     {
         int size = nums.size();
         if(count == size){
@@ -25,6 +25,7 @@ public:
         memset(flag,0,sizeof(int)*len);
         rec(vret,nums,vt,flag,0);
 
+        delete[] flag;
         return vret;
     }
 };

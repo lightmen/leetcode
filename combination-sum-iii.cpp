@@ -11,11 +11,14 @@ public:
             return ;
 
         for(int i = index; i <= 9; ++i){
+            if(i > n)
+                break;
             vt.push_back(i);
             helper(vret,vt,k-1,n-i,i+1);
             vt.pop_back();
         }
     }
+
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int> > vret;
         vector<int> vt;

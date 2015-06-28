@@ -41,6 +41,9 @@ int totalNQueens(int n) {
     ret = 0;
     helper(queue,n,&ret,0);
 
+
+    for(i = 0; i < n; ++i)
+		free(queue[i]);
     free(queue);
     return ret;
 }

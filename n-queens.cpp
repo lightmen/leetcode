@@ -1,6 +1,5 @@
 class Solution {
 public:
-
     vector<vector<string>> vret;
     bool is_ok(int *queue, int k, int pos)
     {

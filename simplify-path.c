@@ -36,7 +36,7 @@ char* simplifyPath(char* str) {
     while(*str){
         while(*str == '/')
             str++;
-        if(*str == '\0')
+        if(*str)
             goto out;
 
         start = str;
@@ -73,5 +73,6 @@ out:
         free(cur->name);
         free(cur);
     }
+
     return ret;
 }

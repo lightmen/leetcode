@@ -11,22 +11,22 @@ int* majorityElement(int* nums, int numsSize, int* returnSize) {
     int *ret;
     int less = numsSize / 3;
     int cur;
-    int begin,end;
+    int i,count;
 
     ret = (int *)malloc(sizeof(int) * (less + 2));
     qsort(nums,numsSize,sizeof(int),cmp);
 
     cur = 0;
-    begin = end = 0;
-    while(end < numsSize){
-        ++end;
-        if((end == numsSize || nums[end] != nums[begin])
-            && end - begin > less){
-            ret[cur++] = nums[begin];
-            begin = end;
-        }else if(end < numsSize && nums[end] != nums[begin]){
-            begin = end;
+    i = 0;
+    count = 0;
+    while(i+count < numsSize){
+        while(i + count < numsSize && nums[i+count] == nums[i]){
+            count++;
         }
+        if(count > less)
+            ret[cur++] = nums[i];
+        i += count;
+        count = 0;
     }
 
     *returnSize = cur;

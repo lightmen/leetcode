@@ -54,5 +54,6 @@ char** restoreIpAddresses(char* s, int* returnSize) {
     helper(s,ip,0);
     *returnSize = size;
 
+    ret = (char **)realloc(ret,sizeof(char *) * size);
     return ret;
 }

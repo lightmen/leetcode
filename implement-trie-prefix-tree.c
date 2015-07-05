@@ -21,9 +21,9 @@ void insert(struct TrieNode* root, char* word) {
             root->child[key] = trieCreate();
         root = root->child[key];
         word++;
-        if(*word == 0)
-            root->is_word = 1;
     }
+
+    root->is_word = 1;
 }
 
 /** Returns if the word is in the trie. */

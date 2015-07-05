@@ -5,19 +5,38 @@
 int **ret;
 int size;
 
+int cmp(char *a, char *b, int n)
+{
+    int i;
+    for(i = 0; i < n; ++i)
+        if(a[i] != b[i])
+            return a[i] - b[i];
+    return 0;
+}
+
+int is_valid(char *s,int len)
+{
+    if(len == 1 && cmp(s,"0",len) >= 0 &&
+        cmp(s,"9",len) <= 0)
+        return 1;
+    if(len == 2 && cmp(s,"10",len) >= 0 &&
+        cmp(s,"99",len) <= 0)
+        return 1;
+    if(len == 3 && cmp(s,"100",len) >= 0 &&
+        cmp(s,"255",len) <= 0)
+        return 1;
+
+    return 0;
+}
+
 void helper(char *s, char *ip,int flag)
 {
-    int n,len,value,ip_len;
+    int n,len,ip_len;
     char *tmp;
 
     len = strlen(s);
     if(flag == 3){
-        if(len == 0 || len > 3)
-            return ;
-        value = atoi(s);
-        if(strlen(s) >= 2 && *s == '0')
-            return ;
-        if(value > 255)
+        if(!is_valid(s,len))
             return ;
         strcat(ip,s);
         ret[size++] = strdup(ip);
@@ -29,11 +48,9 @@ void helper(char *s, char *ip,int flag)
         if(n > len)
             break;
         tmp = strndup(s,n);
-        value = atoi(tmp);
-        if(n >= 2 && *tmp == '0')
+        if(!is_valid(tmp,n))
             continue;
-        if(value > 255)
-            continue;
+
         strcat(ip,tmp);
         strcat(ip,".");
         helper(s+n,ip,flag+1);

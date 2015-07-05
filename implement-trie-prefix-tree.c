@@ -38,6 +38,9 @@ bool search(struct TrieNode* root, char* word) {
             return false;
     }
 
+    if(root == NULL && *word)
+        return false;
+
     return true;
 }
 
@@ -52,6 +55,9 @@ bool startsWith(struct TrieNode* root, char* prefix) {
         root = root->child[key];
         prefix++;
     }
+
+    if(root == NULL && *prefix)
+        return false;
 
     return true;
 }

@@ -8,6 +8,7 @@ struct TrieNode* trieCreate() {
     struct TrieNode *root;
     root = (struct TrieNode *)malloc(sizeof(struct TrieNode));
     memset(root,0,sizeof(struct TrieNode));
+
     return root;
 }
 
@@ -28,36 +29,28 @@ void insert(struct TrieNode* root, char* word) {
 /** Returns if the word is in the trie. */
 bool search(struct TrieNode* root, char* word) {
     int key;
-    while(root && *word){
+    while(*word){
         key = *word - 'a';
         if(root->child[key] == NULL)
             return false;
         root = root->child[key];
         word++;
-        if(*word == 0 && !root->is_word)
-            return false;
     }
 
-    if(root == NULL && *word)
-        return false;
-
-    return true;
+    return root->is_word;
 }
 
 /** Returns if there is any word in the trie
     that starts with the given prefix. */
 bool startsWith(struct TrieNode* root, char* prefix) {
     int key;
-    while(root && *prefix){
+    while(*prefix){
         key = *prefix - 'a';
         if(root->child[key] == NULL)
             return false;
         root = root->child[key];
         prefix++;
     }
-
-    if(root == NULL && *prefix)
-        return false;
 
     return true;
 }

@@ -16,10 +16,10 @@ struct ListNode* insertionSortList(struct ListNode* head) {
         while(cur->next && cur->next->val < head->val)
             cur = cur->next;
 
-        tmp = cur->next;
+        tmp = head->next;
+        head->next = cur->next;
         cur->next = head;
-        head = head->next;
-        cur->next->next = tmp;
+        head = tmp;
     }
 
     return root.next;

@@ -31,8 +31,7 @@ struct ListNode* reverseBetween(struct ListNode* head, int m, int n) {
         head = tmp;
     }
 
-    if(tail)
-        tail->next = head;
+    tail->next = head;
 
     return root.next;
 }

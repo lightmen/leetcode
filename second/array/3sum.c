@@ -33,10 +33,8 @@ int** threeSum(int* nums, int numsSize, int* returnSize) {
         while(start < end){
             sum = nums[i] + nums[start] + nums[end];
 
-            if(sum == 0 && size > 0 && arr[size-1][0] == nums[i] &&
-                arr[size-1][1] == nums[start] && arr[size-1][2] == nums[end]){
+            if(start > i + 1 && nums[start-1] == nums[start]){
                 ++start;
-                --end;
                 continue;
             }
 

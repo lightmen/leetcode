@@ -2,23 +2,19 @@ int maxArea(int* height, int heightSize) {
     int ret = 0;
     int start,end;
     int mul;
-    int min;
 
-    start = 1;
-    end = heightSize;
+    start = 0;
+    end = heightSize-1;
     while(start < end){
-        mul = end - start;
-        if(height[start-1] < height[end-1]){
-            min = height[start-1];
+        if(height[start] < height[end]){
+            mul = height[start] * (end - start);
             ++start;
         }else{
-            min = height[end-1];
+            mul = height[end] * (end - start);
             --end;
         }
 
-        mul *= min;
-        if(mul > ret)
-            ret = mul;
+        ret = mul > ret ? mul : ret;
     }
 
     return ret;

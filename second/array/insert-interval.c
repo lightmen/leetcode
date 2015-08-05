@@ -14,7 +14,6 @@ struct Interval* insert(struct Interval* intervals, int intervalsSize,
     struct Interval *ret;
     int count = 0;
     int i;
-    int flag = 1;
 
     ret = (struct Interval *)malloc(sizeof(struct Interval) * (intervalsSize + 1));
 
@@ -24,10 +23,6 @@ struct Interval* insert(struct Interval* intervals, int intervalsSize,
             ret[count].end = intervals[i].end;
             count++;
         }else if(intervals[i].start > newInterval.end){
-            ret[count].start = newInterval.start;
-            ret[count].end = newInterval.end;
-            count++;
-            flag = 0;
             break;
         }else{
             newInterval.start = intervals[i].start < newInterval.start ?
@@ -37,15 +32,13 @@ struct Interval* insert(struct Interval* intervals, int intervalsSize,
         }
     }
 
+    ret[count].start = newInterval.start;
+    ret[count].end = newInterval.end;
+    count++;
+
     for(; i < intervalsSize; ++i){
         ret[count].start = intervals[i].start;
         ret[count].end = intervals[i].end;
-        count++;
-    }
-
-    if(intervalsSize == 0 || flag){
-        ret[count].start = newInterval.start;
-        ret[count].end = newInterval.end;
         count++;
     }
 

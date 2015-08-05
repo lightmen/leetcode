@@ -1,6 +1,6 @@
 bool canJump(int* nums, int numsSize) {
     int i = 0;
-    int max_jump = i + nums[0];
+    int max_jump = nums[0];
 
     while(max_jump < numsSize-1){
         int max = max_jump;

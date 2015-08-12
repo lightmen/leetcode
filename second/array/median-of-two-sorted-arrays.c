@@ -19,7 +19,7 @@ double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Si
     if(num % 2)
         ret = arr[num/2];
     else
-        ret = (double)(arr[(num-1)/2] + arr[num/2]) / 2;
+        ret = (arr[(num-1)/2] + arr[num/2]) / 2.0;
 
     free(arr);
     return ret;

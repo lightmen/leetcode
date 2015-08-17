@@ -18,20 +18,9 @@ void setZeroes(int** matrix, int matrixRowSize, int matrixColSize) {
     }
 
     for(i = 0; i < matrixRowSize; ++i){
-        if(row[i] == 0)
-            continue;
-
         for(j = 0; j < matrixColSize; ++j){
-            matrix[i][j] = 0;
-        }
-    }
-
-    for(j = 0; j < matrixColSize; ++j){
-        if(col[j] == 0)
-            continue;
-
-        for(i = 0; i < matrixRowSize; ++i){
-            matrix[i][j] = 0;
+            if(row[i] || col[j])
+                matrix[i][j] = 0;
         }
     }
 

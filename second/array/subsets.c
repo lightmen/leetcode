@@ -12,8 +12,8 @@ int** subsets(int* nums, int numsSize, int** columnSizes, int* returnSize) {
     int **ret;
     int *col;
     int count = 1 << numsSize;
-    int i;
-    int j;
+    int i,j;
+    int bit;
 
     ret = (int **)malloc(sizeof(int *) * count);
     col = (int *)malloc(sizeof(int) * count);
@@ -23,10 +23,13 @@ int** subsets(int* nums, int numsSize, int** columnSizes, int* returnSize) {
     for(i = 0; i < count; ++i){
         col[i] = 0;
         ret[i] = (int *)malloc(sizeof(int *) * numsSize);
-        for(j = 0; j < numsSize; ++j){
-            if(i & (1 << j)){
+        bit = i;
+        j = 0;
+        while(bit > 0){
+            if(bit & 1)
                 ret[i][col[i]++] = nums[j];
-            }
+            j++;
+            bit >>= 1;
         }
     }
 

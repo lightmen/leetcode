@@ -25,6 +25,7 @@ bool isPalindrome(struct ListNode* head) {
     int i;
     struct ListNode root;
     struct ListNode *right;
+    struct ListNode *mid,*tmp;
 
     root.next = head;
     while(head){
@@ -39,14 +40,19 @@ bool isPalindrome(struct ListNode* head) {
         i++;
     }
 
+    mid = head;
     right = reverse(head->next);
+    tmp = right;
     head = root.next;
     while(right){
-        if(right->val != head->val)
+        if(right->val != head->val){
+            mid->next = reverse(tmp);
             return false;
+        }
         right = right->next;
         head = head->next;
     }
 
+    mid->next = reverse(tmp);
     return true;
 }

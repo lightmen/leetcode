@@ -2,7 +2,6 @@ int countPrimes(int n) {
     int ret = 0;
     int i,j;
     int *prime;
-
     prime = (int *)malloc(sizeof(int) * n);
     memset(prime,0,sizeof(int) * n);
 
@@ -10,8 +9,8 @@ int countPrimes(int n) {
         if(prime[i])
             continue;
         ret++;
-        for(j = 2; i * j < n; ++j)
-            prime[i*j] = 1;
+        for(j = 2*i; j < n; j += i)
+            prime[j] = 1;
     }
 
     free(prime);

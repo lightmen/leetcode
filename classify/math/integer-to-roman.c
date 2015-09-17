@@ -22,10 +22,10 @@ char* intToRoman(int num) {
 
     while(num > 0){
         int k = num / values[i];
-        for(j = 0; j < k; ++j){
+        for(j = 0; j < k; ++j)
             strcat(ret,symbols[i]);
-            num -= values[i];
-        }
+
+        num -= k* values[i];
         i++;
     }
 

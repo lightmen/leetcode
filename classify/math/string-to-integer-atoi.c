@@ -1,13 +1,13 @@
 int myAtoi(char* str) {
     int ret = 0;
     int tmp = 0;
-    int is_neg = 0;
+    int is_neg = 1;
 
     while(*str && *str == ' ')
         str++;
 
     if(*str == '-')
-        is_neg = 1;
+        is_neg = -1;
 
     if(*str == '+' || *str == '-')
         str++;
@@ -16,9 +16,9 @@ int myAtoi(char* str) {
         tmp = ret * 10 + (*str - '0');
         str++;
         if(tmp / 10 != ret)
-            return is_neg ? INT_MIN : INT_MAX;
+            return is_neg == -1 ? INT_MIN : INT_MAX;
         ret = tmp;
     }
 
-    return is_neg ? -ret : ret;
+    return is_neg * ret;
 }

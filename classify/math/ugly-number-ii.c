@@ -22,7 +22,7 @@ int nthUglyNumber(int n) {
             t2++;
         if(arr[t3] * 3 == m)
             t3++;
-        if(arr[t5] * 5 <= m)
+        if(arr[t5] * 5 == m)
             t5++;
     }
 

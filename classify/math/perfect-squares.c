@@ -10,11 +10,9 @@ void get_square(int *arr, int k)
     min = k;
     for(i = 1; i*i < k; ++i){
         x = i * i;
-        if(arr[x] == 0)
-            get_square(arr,x);
         if(arr[k-x] == 0)
             get_square(arr,k-x);
-        min = arr[x] + arr[k-x] < min ? arr[x] + arr[k-x] : min;
+        min = 1 + arr[k-x] < min ? 1 + arr[k-x] : min;
     }
 
     arr[k] = min;

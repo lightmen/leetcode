@@ -7,7 +7,7 @@ int strStr(char* haystack, char* needle) {
     nd_len = strlen(needle);
 
     for(i = 0; i < ht_len; ++i)
-       jump[haystack[i]] = nd_len + 1;
+        jump[haystack[i]] = nd_len + 1;
     for(i = 0; i < nd_len; ++i)
         jump[needle[i]] = nd_len - i;
 

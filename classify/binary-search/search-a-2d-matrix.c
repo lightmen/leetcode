@@ -1,16 +1,15 @@
 bool searchMatrix(int** matrix, int matrixRowSize, int matrixColSize, int target) {
     int start,end,mid;
-    int row,col;
+    int tmp;
 
     start = 0;
     end = matrixRowSize * matrixColSize - 1;
     while(start <= end){
         mid = (start + end) / 2;
-        row = mid / matrixColSize;
-        col = mid % matrixColSize;
-        if(matrix[row][col] == target)
+        tmp= matrix[mid / matrixColSize][mid % matrixColSize];
+        if(tmp == target)
             return true;
-        else if(matrix[row][col] > target)
+        else if(tmp > target)
             end = mid - 1;
         else
             start = mid + 1;

@@ -28,7 +28,7 @@ int countNodes(struct TreeNode* root) {
     }
 
     if(lh == rh)
-        return pow(2,lh+1) - 1;
+        return (2<<lh) - 1;
 
     return 1 + countNodes(root->left) + countNodes(root->right);
 }

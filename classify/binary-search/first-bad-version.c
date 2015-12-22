@@ -2,20 +2,18 @@
 bool isBadVersion(int version);
 
 int firstBadVersion(int n) {
-    long start,end,mid;
+    int start,end,mid;
     start = 1;
     end = n;
 
-    while(start <= end){
-        mid = (start + end) / 2;
+    while(start < end){
+        mid = start + (end - start) / 2;
         if(isBadVersion(mid)){
-            if(mid - 1 <= 0 || !isBadVersion(mid - 1))
-                break;
-            end = mid - 1;
+            end = mid;
         }else{
             start = mid + 1;
         }
     }
 
-    return mid;
+    return end;
 }

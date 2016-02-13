@@ -14,21 +14,19 @@ struct ListNode *merge_two_list(struct ListNode *l1, struct ListNode *l2)
 
     while(l1 && l2){
         if(l1->val < l2->val){
-            tmp = l1;
+            cursor->next = l1;
             l1 = l1->next;
         }else{
-            tmp = l2;
+            cursor->next = l2;
             l2 = l2->next;
         }
-        cursor->next = tmp;
         cursor = cursor->next;
     }
 
-    cursor->next = NULL;
 
     if(l1)
         cursor->next = l1;
-    if(l2)
+    else
         cursor->next = l2;
 
     return head.next;
@@ -53,5 +51,6 @@ struct ListNode* merge_list_range(struct ListNode **lists, int start, int end)
 struct ListNode* mergeKLists(struct ListNode** lists, int listsSize) {
     if(listsSize == 0)
         return NULL;
+
     return merge_list_range(lists, 0, listsSize-1);
 }

@@ -1,7 +1,8 @@
 int maxSubArray(int* nums, int numsSize) {
-    int ret = nums[0];
-    int i,sum;
+    int i, ret, sum;
+
     sum = 0;
+    ret = INT_MIN;
     for(i = 0; i < numsSize; ++i){
         sum += nums[i];
         ret = sum > ret ? sum : ret;

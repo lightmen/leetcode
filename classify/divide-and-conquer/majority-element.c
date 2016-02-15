@@ -3,9 +3,11 @@ int majorityElement(int* nums, int numsSize) {
 
     count = 0;
     for(i = 0; i < numsSize; ++i){
-        if(count == 0 || nums[i] == value){
+        if(count == 0){
             ++count;
             value = nums[i];
+        }else if(value == nums[i]){
+            ++count;
         }else{
             --count;
         }

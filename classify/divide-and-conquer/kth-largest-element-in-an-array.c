@@ -1,10 +1,33 @@
-int cmp(const void *a, const void *b)
-{
-    return *(int *)b - *(int *)a;
-}
-
 int findKthLargest(int* nums, int numsSize, int k) {
-    qsort(nums,numsSize,sizeof(int),cmp);
+    int start,end;
+    int i,j;
+    int tmp,value;
 
-    return nums[k-1];
+    start = 0;
+    end = numsSize - 1;
+    k--;
+    while(start < end){
+        i = start - 1;
+        j = end + 1;
+        value = nums[(i+j)/2];
+        while(i < j){
+            for(++i; nums[i] > value; ++i) ;
+
+            for(--j; value > nums[j]; --j) ;
+
+            if(i < j){
+                tmp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = tmp;
+            }
+        }
+
+        if(k > j){
+            start = j + 1;
+        }else{
+            end = j;
+        }
+    }
+
+    return nums[k];
 }

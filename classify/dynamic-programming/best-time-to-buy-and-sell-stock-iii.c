@@ -1,6 +1,6 @@
 int maxProfit(int* prices, int pricesSize) {
     int i;
-    int min,max;
+    int min,max,ret;
     int *left,*right;
     left = (int *)malloc(sizeof(int) * pricesSize);
     right = (int *)malloc(sizeof(int) * pricesSize);
@@ -14,17 +14,14 @@ int maxProfit(int* prices, int pricesSize) {
 
     max = prices[pricesSize - 1];
     right[pricesSize - 1] = 0;
+    ret = 0;
     for(i = pricesSize - 2; i >= 0; --i){
         max = prices[i] > max ? prices[i] : max;
         right[i] = (max - prices[i]) > right[i+1] ? (max - prices[i]) : right[i+1];
+        ret = (left[i] + right[i]) > ret ? (left[i] + right[i]) : ret;
     }
-
-
-    max = 0;
-    for(i = 0; i < pricesSize; ++i)
-        max = (left[i] + right[i]) > max ? (left[i] + right[i]) : max;
 
     free(left);
     free(right);
-    return max;
+    return ret;
 }

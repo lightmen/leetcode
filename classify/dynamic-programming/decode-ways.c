@@ -1,4 +1,3 @@
-
 int numDecodings(char* s) {
     int *dp;
     int i,len,value;
@@ -8,21 +7,17 @@ int numDecodings(char* s) {
         return 0;
 
     dp = (int *)malloc(sizeof(int) * (len + 1));
-    dp[len] = 1;
-    dp[len-1] = s[len-1] != '0' ? 1 : 0;
-    for(i = len - 2; i >= 0; --i){
-        if(s[i] == '0'){
-            dp[i] = 0;
-            continue;
-        }
+    dp[0] = 1;
+    dp[1] = s[0] != '0' ? 1 : 0;
+    for(i = 2; i <= len; ++i){
+        dp[i] = s[i-1] != '0' ? dp[i-1] : 0;
 
-        dp[i] = dp[i+1];
-        value = (s[i] - '0') * 10 + (s[i+1] - '0');
+        value = (s[i-2] - '0') * 10 + (s[i-1] - '0');
         if(value >= 10 && value <= 26)
-            dp[i] += dp[i+2];
+            dp[i] += dp[i-2];
     }
 
-    value = dp[0];
+    value = dp[len];
     free(dp);
     return value;
 }

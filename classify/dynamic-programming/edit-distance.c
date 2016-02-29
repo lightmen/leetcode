@@ -22,11 +22,13 @@ int minDistance(char* word1, char* word2) {
 
     for(i = 1; i <= len1; ++i){
         for(j = 1; j <= len2; ++j){
-            //repleace a char or not
-            value = dp[i-1][j-1];
-            if(word1[i-1] != word2[j-1]) //means need to repleace
-                value++;
+            if(word1[i-1] == word2[j-1]){
+                dp[i][j] = dp[i-1][j-1];
+                continue;
+            }
 
+            //repleace a char
+            value = dp[i-1][j-1] + 1;
             //insert a char after word1[i]
             value = dp[i][j-1] + 1 < value ? dp[i][j-1] + 1 : value;
             //delet the char word1[i]

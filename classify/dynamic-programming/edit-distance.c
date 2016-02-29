@@ -27,18 +27,18 @@ int minDistance(char* word1, char* word2) {
                 continue;
             }
 
-            //repleace a char
-            value = dp[i-1][j-1] + 1;
-            //insert a char after word1[i]
-            value = dp[i][j-1] + 1 < value ? dp[i][j-1] + 1 : value;
-            //delet the char word1[i]
-            value = dp[i-1][j] + 1 < value ? dp[i-1][j] + 1 : value;
-            dp[i][j] = value;
+            /* dp[i-1][j-1]: repleace a char
+             * dp[i][j-1]: insert a char after word1[i]
+             * dp[i-1][j]: delet the char word1[i]
+             */
+            value = dp[i][j-1] < dp[i-1][j-1] ? dp[i][j-1] : dp[i-1][j-1];
+            value = dp[i-1][j] < value ? dp[i-1][j] : value;
+
+            dp[i][j] = value + 1;
         }
     }
 
     value = dp[len1][len2];
-
     for(i = 0; i <= len1; ++i)
         free(dp[i]);
     free(dp);

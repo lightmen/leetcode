@@ -14,11 +14,10 @@ int lengthOfLIS(int* nums, int numsSize) {
         dp[i] = 1;
 
     for(i = 0; i < numsSize; ++i){
-        for(j = i + 1; j < numsSize; ++j)
-            if(nums[j] > nums[i])
-                dp[j] = max_2(dp[j],dp[i] + 1);
+        for(j = 0; j < i; ++j)
+            if(nums[i] > nums[j])
+                dp[i] = max_2(dp[i],dp[j] + 1);
     }
-
 
     ret = 0;
     for(i = 0; i < numsSize; ++i)

@@ -1,7 +1,22 @@
-int max_2(int a, int b)
-{
-    return a > b ? a : b;
-}
+/*
+#define max_2(x, y) ({ \
+    typeof(x) _max1 = (x); \
+    typeof(y) _max2 = (y); \
+    (void) (&_max1 == &_max2); \
+    _max1 > _max2 ? _max1 : _max2; \
+})
+
+
+#define min_2(x, y) ({ \
+    typeof(x) _min1 = (x); \
+    typeof(y) _min2 = (y); \
+    (void) (&_min1 == &_min2); \
+    _min1 < _min2 ? _min1 : _min2; \
+})
+*/
+
+#define max_2(x, y) ((x) > (y)) ? (x) : (y)
+#define min_2(x, y) ((x) < (y)) ? (x) : (y)
 
 int maximalSquare(char** matrix, int matrixRowSize, int matrixColSize) {
     int **dp;
@@ -15,10 +30,12 @@ int maximalSquare(char** matrix, int matrixRowSize, int matrixColSize) {
 
     for(i = 1; i <= matrixRowSize; ++i)
         for(j = 1; j <= matrixColSize; ++j){
-            min_value = dp[i-1][j] < dp[i-1][j-1] ? dp[i-1][j] : dp[i-1][j-1];
-            min_value = dp[i][j-1] < min_value ? dp[i][j-1] : min_value;
-            if(matrix[i-1][j-1] == '1')
-                dp[i][j] = min_value + 1;
+            if(matrix[i-1][j-1] == '0')
+                continue;
+
+            min_value = min_2(dp[i-1][j], dp[i-1][j-1]);
+            min_value = min_2(dp[i][j-1], min_value);
+            dp[i][j] = min_value + 1;
         }
 
     max_square = 0;

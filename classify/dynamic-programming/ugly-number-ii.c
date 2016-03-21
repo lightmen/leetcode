@@ -7,29 +7,29 @@
 })
 
 int nthUglyNumber(int n) {
-    int *dp;
+    int *arr;
     int ret;
     int t2,t3,t5;
     int c;
 
-    dp = (int *)malloc(sizeof(int) * n);
-    dp[0] = 1;
+    arr = (int *)malloc(sizeof(int) * n);
+    arr[0] = 1;
     t2 = t3 = t5 = 0;
     c = 1;
 
     while(c < n){
-        int tmp = min_3(dp[t2] * 2, dp[t3] * 3, dp[t5] * 5);
-        dp[c++] = tmp;
+        int tmp = min_3(arr[t2] * 2, arr[t3] * 3, arr[t5] * 5);
+        arr[c++] = tmp;
 
-        if(dp[t2] * 2 == tmp)
+        while(arr[t2] * 2 <= tmp)
             t2++;
-        if(dp[t3] * 3 == tmp)
+        while(arr[t3] * 3 <= tmp)
             t3++;
-        if(dp[t5] * 5 == tmp)
+        while(arr[t5] * 5 <= tmp)
             t5++;
     }
 
-    ret = dp[n-1];
-    free(dp);
+    ret = arr[n-1];
+    free(arr);
     return ret;
 }

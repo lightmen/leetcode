@@ -14,5 +14,5 @@ int numTrees(int n) {
 
     ret = dp[n];
     free(dp);
-    return dp;
+    return ret;
 }

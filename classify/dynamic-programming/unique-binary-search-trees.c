@@ -8,8 +8,8 @@ int numTrees(int n) {
 
     for(i = 1; i <= n; ++i){
         dp[i] = 0;
-        for(j = 0; j < i; ++j)
-            dp[i] += (dp[j] * dp[i-j-1]);
+        for(j = 1; j <= i; ++j)
+            dp[i] += (dp[j-1] * dp[i-j]);
     }
 
     ret = dp[n];

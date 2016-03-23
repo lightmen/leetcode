@@ -18,5 +18,9 @@ int uniquePaths(int m, int n) {
     }
 
     ret = dp[m-1][n-1];
+    for(i = 0; i < m; ++i)
+        free(dp[i]);
+    free(dp);
+
     return ret;
 }

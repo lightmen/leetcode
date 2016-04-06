@@ -22,7 +22,7 @@ struct NumArray* NumArrayCreate(int* nums, int numsSize) {
 }
 
 int sumRange(struct NumArray* numArray, int i, int j) {
-    return (numArray->dp)[j+1] - (numArray->dp)[i];
+    return numArray->dp[j+1] - numArray->dp[i];
 }
 
 /** Deallocates memory previously allocated for the data structure. */

@@ -20,9 +20,10 @@ void minStackPush(MinStack *stack, int element) {
 }
 
 void minStackPop(MinStack *stack) {
-    if(stack->top_min != -1 && stack->st_data[stack->top_data] <=
+    if(stack->top_min != -1 && stack->st_data[stack->top_data] ==
         stack->st_min[stack->top_min])
         --stack->top_min;
+
     --stack->top_data;
 }
 
@@ -31,10 +32,7 @@ int minStackTop(MinStack *stack) {
 }
 
 int minStackGetMin(MinStack *stack) {
-    if(stack->top_min != -1)
-        return stack->st_min[stack->top_min];
-
-    return stack->st_data[stack->top_data];
+    return stack->st_min[stack->top_min];
 }
 
 void minStackDestroy(MinStack *stack) {

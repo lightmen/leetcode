@@ -15,15 +15,16 @@ bool isValid(char* s) {
     top = -1;
 
     while(*s){
-        if(*s == '(' || *s == '[' || *s == '{'){
+        if(*s == '(' || *s == '[' || *s == '{')
             st[++top] = *s;
-        }else if(top > -1 && is_match(st[top], *s)){
+        else if(top > -1 && is_match(st[top], *s))
             top--;
-        }else{
+        else
             return false;
-        }
+
         s++;
     }
 
+    free(st);
     return top == -1;
 }

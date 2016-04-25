@@ -7,16 +7,19 @@
  * };
  */
 struct BSTIterator {
-    struct TreeNode *st[1000];
+    struct TreeNode **st;
     struct TreeNode *cur;
     int top;
+    int count;
 };
 
 struct BSTIterator *bstIteratorCreate(struct TreeNode *root) {
     struct BSTIterator *iter;
     iter = malloc(sizeof(struct BSTIterator));
+    iter->count = 20;
     iter->cur = root;
     iter->top = -1;
+    iter->st = malloc(sizeof(struct TreeNode *) * iter->count);
 
     return iter;
 }
@@ -29,6 +32,10 @@ bool bstIteratorHasNext(struct BSTIterator *iter) {
 /** @return the next smallest number */
 int bstIteratorNext(struct BSTIterator *iter) {
     while(iter->cur){
+        if(iter->top + 1 == iter->count){
+            iter->count <<= 1;
+            iter->st = realloc(iter->st, iter->count * sizeof(struct TreeNode *));
+        }
         iter->st[++iter->top] = iter->cur;
         iter->cur = iter->cur->left;
     }
@@ -41,7 +48,7 @@ int bstIteratorNext(struct BSTIterator *iter) {
 
 /** Deallocates memory previously allocated for the iterator */
 void bstIteratorFree(struct BSTIterator *iter) {
-
+    free(iter->st);
 }
 
 /**

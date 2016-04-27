@@ -11,16 +11,16 @@ class Solution(object):
         data = []
         pre = None
 
-        if root is not None:
+        if root:
             st.append(root)
             while st:
                 cur = st[len(st)-1]
                 if ((cur.left == None and cur.right == None) or \
-                    (pre  and (pre == cur.left or pre == cur.right))) :
+                    (pre  and (pre == cur.left or pre == cur.right))):
                     data.append(cur.val)
                     st.pop()
                     pre = cur
-                else :
+                else:
                     if cur.right:
                         st.append(cur.right)
                     if cur.left:

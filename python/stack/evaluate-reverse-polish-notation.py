@@ -7,8 +7,9 @@ class Solution(object):
                 right = st.pop()
                 left = st.pop()
                 if(t == '/'):
-                    left *= 1.0
-                st.append(int(ops[t](left,right)))
+                    st.append(int(ops[t](left * 1.0,right)))
+                else:
+                    st.append(ops[t](left,right))
             else:
                 st.append(int(t))
 

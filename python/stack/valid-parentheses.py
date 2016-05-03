@@ -5,7 +5,7 @@ class Solution(object):
         for c in s:
             if c in left_s:
                 st.append(c)
-            elif len(st) > 0 and \
+            elif st and \
                 ((c == ')' and st[-1] == '(') \
                 or (c == '}' and st[-1] == '{') \
                 or (c == ']' and st[-1] == '[')):
@@ -13,4 +13,4 @@ class Solution(object):
             else:
                 return False
 
-        return bool(len(st) == 0)
+        return not st

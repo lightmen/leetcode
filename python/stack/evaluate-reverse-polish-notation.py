@@ -2,8 +2,9 @@ class Solution(object):
     def evalRPN(self, tokens):
         ops = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.div}
         st = []
+        opstr = '+-*/'
         for t in tokens:
-            if t in  ('+','-','*','/'):
+            if t in  opstr:
                 right = st.pop()
                 left = st.pop()
                 if(t == '/'):

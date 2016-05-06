@@ -5,7 +5,6 @@ typedef struct {
     int e1;
     int f2;
     int e2;
-    int size;
 } Stack;
 
 /* Create a stack */
@@ -16,7 +15,6 @@ void stackCreate(Stack *stack, int maxSize) {
     stack->e1 = 0;
     stack->f2 = 0;
     stack->e2 = 0;
-    stack->size = maxSize;
 }
 
 /* Push element x onto stack */

@@ -6,31 +6,24 @@
  *     struct TreeNode *right;
  * };
  */
-
-int my_abs(int a, int b)
+#define max_2(x,y) ({ \
+    int _x = (x); \
+    int _y = (y); \
+    _x > _y ? _x : _y ;\
+})
+int depth(struct TreeNode *root)
 {
-    if(a > b)
-        return a - b;
-    return b - a;
+    if(root == NULL)
+        return 0;
+
+    int left = depth(root->left);
+    int right = depth(root->right);
+
+    if(left == -1 || right == -1 || abs(left - right) > 1)
+        return -1;
+
+    return max_2(left,right) + 1;
 }
-bool getResult(struct TreeNode *root, int *height)
-{
-    if(root == NULL){
-        *height = 0;
-        return true;
-    }
-
-    int left = 0;
-    int right = 0;
-    bool bleft = getResult(root->left,&left);
-    bool bright = getResult(root->right,&right);
-    bool isbalanced = my_abs(left,right) <= 1;
-
-    *height = (left > right ? left : right)+1;
-    return bleft && bright && isbalanced;
-}
-
 bool isBalanced(struct TreeNode* root) {
-    int height;
-    return getResult(root,&height);
+    return depth(root) != -1;
 }

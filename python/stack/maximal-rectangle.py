@@ -7,14 +7,13 @@ class Solution(object):
             while st and heights[i] <= heights[st[-1]]:
                 h = heights[st[-1]]
                 st.pop()
-                w = i
-                if st:
-                    w = i - st[-1] - 1
+                w = i if not st else (i - st[-1] - 1)
 
                 if h * w > area:
                     area = h * w
 
             st.append(i)
+
         return area
 
     def maximalRectangle(self, matrix):

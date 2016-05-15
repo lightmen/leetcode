@@ -13,6 +13,7 @@ struct path* init_path(char *name)
 
     return p;
 }
+
 struct path *handle_dotdot(struct path *p)
 {
     if(!p->parent)
@@ -20,6 +21,7 @@ struct path *handle_dotdot(struct path *p)
 
     struct path *parent = p->parent;
     parent->child = NULL;
+    free(p->name);
     free(p);
     return parent;
 }
@@ -68,6 +70,7 @@ char* simplifyPath(char* path) {
         strcat(ret,cur->name);
         parent = cur;
         cur = cur->child;
+        free(parent->name);
         free(parent);
         if(cur)
             strcat(ret,"/");

@@ -5,10 +5,10 @@ bool isValidSerialization(char* preorder) {
 
     if(*next && *next != '#')
         count++;
-    while(*next && *next != ',')
-            next++;
-    while (count-- > 0){
 
+    while (count-- > 0){
+        while(*next && *next != ',')
+            next++;
         if(*next)
             next++;
         left = next;
@@ -27,11 +27,9 @@ bool isValidSerialization(char* preorder) {
             count++;
         if(*right != '#')
             count++;
-
-        while(*next && *next != ',')
-            next++;
     }
-
+    while(*next && *next != ',')
+            next++;
     if(*next)
         return false;
 

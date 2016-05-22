@@ -18,8 +18,7 @@ class BSTIterator(object):
             self.st.append(self.cur)
             self.cur = self.cur.left
 
-        tmp = self.st[-1]
-        self.st.pop()
+        tmp = self.st.pop()
         self.cur = tmp.right
         return tmp.val
 

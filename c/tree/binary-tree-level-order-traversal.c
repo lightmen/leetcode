@@ -18,37 +18,53 @@ int** levelOrder(struct TreeNode* root, int** columnSizes, int* returnSize) {
     struct TreeNode **q;
     struct TreeNode **new_q;
     struct TreeNode **cur;
+    int arr_idx = 0;
+    int q_count = 512;
+    int arr_count = 8;
+    int tmp_count = 8;
     int idx = 0;
-    int alloc_count = 1024;
 
-    arr = malloc(sizeof(int *) * alloc_count);
-    col_arr = malloc(sizeof(int) * alloc_count);
-    q = malloc(sizeof(struct TreeNode *) * alloc_count);
-    new_q = malloc(sizeof(struct TreeNode *) * alloc_count);
+
+    arr = malloc(sizeof(int *) * arr_count);
+    col_arr = malloc(sizeof(int) * arr_count);
+    q = malloc(sizeof(struct TreeNode *) * q_count);
+    new_q = malloc(sizeof(struct TreeNode *) * q_count);
 
     q[0] = root;
     q[1] = NULL;
     while(*q != NULL){
         cur =  q;
-        memset(new_q, 0, sizeof(struct TreeNode *) * alloc_count);
-        int *tmp = malloc(sizeof(int) * alloc_count);
+        memset(new_q, 0, sizeof(struct TreeNode *) * q_count);
+        int *tmp = malloc(sizeof(int) * tmp_count);
         i = 0;
         j= 0;
         while(*cur != NULL) {
+            if(i == tmp_count){
+                tmp_count <<= 2;
+                tmp = realloc(tmp, sizeof(int) * tmp_count);
+            }
             tmp[i++] = (*cur)->val;
+
             if((*cur)->left)
                new_q[j++] = (*cur)->left;
             if((*cur)->right)
                 new_q[j++] = (*cur)->right;
+
             cur++;
+        }
+        if(idx == arr_count){
+            arr_count <<= 2;
+            col_arr = realloc(col_arr, sizeof(int) * arr_count);
+            arr = realloc(arr, sizeof(int *) * arr_count);
         }
         col_arr[idx] = i;
         arr[idx++] = tmp;
 
-        memset(q, 0, sizeof(struct TreeNode *) * alloc_count);
+        memset(q, 0, sizeof(struct TreeNode *) * q_count);
         cur = new_q;
         new_q = q;
         q = cur;
+
     }
 
     *columnSizes = col_arr;

@@ -7,13 +7,11 @@
 
 class Solution(object):
     def levelOrderBottom(self, root):
-        q = []
-        ret = []
-
         if not root:
             return []
 
-        q.append(root)
+        ret = []
+        q = [root]
         while q:
             new_q = []
             li = []

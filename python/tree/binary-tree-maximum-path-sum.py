@@ -6,22 +6,18 @@
 #         self.right = None
 
 class Solution(object):
-    def max_sum(self,root,nodeval):
+    def max_sum(self,root):
         if not root:
-            return (0,nodeval)
+            return (0,-sys.maxint)
 
-        left,nodeval = self.max_sum(root.left,nodeval)
-        right,nodeval = self.max_sum(root.right,nodeval)
+        left = self.max_sum(root.left)
+        right = self.max_sum(root.right)
 
-        retval = root.val
-        retval += left if left > right else right
+        retval = max(left[0]+root.val, right[0]+root.val,0)
+        maxval = max(left[1],right[1],root.val+left[0]+right[0])
 
-        cur_max = root.val + left + right
-        nodeval = cur_max if cur_max > nodeval else nodeval
-
-        return (retval if retval > 0 else 0, nodeval)
+        return (retval,maxval)
 
     def maxPathSum(self, root):
-        nodeval = -sys.maxint - 1
-        retval, nodeval = self.max_sum(root,nodeval)
+        _, nodeval = self.max_sum(root)
         return nodeval

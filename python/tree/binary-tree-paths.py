@@ -16,13 +16,15 @@ class Solution:
             return
 
         cur_path += str(root.val)
-        if root.left:
-            self.rescuive(root.left,cur_path + '->')
-        if root.right:
-            self.rescuive(root.right,cur_path + '->')
-
         if not root.left and not root.right:
             self.path.append(cur_path)
+            return
+
+        cur_path += '->'
+        if root.left:
+            self.rescuive(root.left,cur_path)
+        if root.right:
+            self.rescuive(root.right,cur_path)
 
     def binaryTreePaths(self, root):
         self.rescuive(root,'')

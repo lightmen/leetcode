@@ -6,15 +6,14 @@
  * };
  *
  */
-
-
-
 void connect(struct TreeLinkNode *root) {
     if(root == NULL)
         return ;
 
-    struct TreeLinkNode **arr = malloc(sizeof(struct TreeLinkNode *) * 5000);
-    struct TreeLinkNode **next_arr = malloc(sizeof(struct TreeLinkNode *) * 5000);
+    int arr_size = 64;
+    int next_size = 64;
+    struct TreeLinkNode **arr = malloc(sizeof(struct TreeLinkNode *) * arr_size);
+    struct TreeLinkNode **next_arr = malloc(sizeof(struct TreeLinkNode *) * next_size);
     int top;
     int next_top;
 
@@ -25,6 +24,10 @@ void connect(struct TreeLinkNode *root) {
         next_top = -1;
         for(int i = 0; i <= top; ++i){
             arr[i]->next = (i != top) ? arr[i+1] : NULL;
+            if(next_top + 2 >= arr_size){
+                arr_size <<= 1;
+                next_arr = realloc(next_arr, sizeof(struct TreeLinkNode *) * arr_size);
+            }
             if(arr[i]->left)
                 next_arr[++next_top] = arr[i]->left;
             if(arr[i]->right)
@@ -35,6 +38,10 @@ void connect(struct TreeLinkNode *root) {
         arr = next_arr;
         next_arr = tmp;
         top = next_top;
+
+        int size = arr_size;
+        arr_size = next_size;
+        next_size = size;
     }
 
     free(arr);

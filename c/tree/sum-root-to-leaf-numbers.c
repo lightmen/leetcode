@@ -10,21 +10,13 @@
 int sum(struct TreeNode *root, int cur_val)
 {
     if(root == NULL)
-        return cur_val;
+        return 0;
 
     int val = cur_val * 10 + root->val;
-    int left = 0;
-    if(root->left)
-        left = sum(root->left, val);
-    int right = 0;
-    if(root->right)
-        right = sum(root->right, val);
-
-
-    if(left == 0 && right == 0)
+    if(root->left == NULL && root->right == NULL)
         return val;
 
-    return left + right;
+    return sum(root->left, val) + sum(root->right, val);
 }
 
 int sumNumbers(struct TreeNode* root) {

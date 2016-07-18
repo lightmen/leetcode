@@ -2,9 +2,6 @@ int numTrees(int n) {
     int *num;
     int ret;
 
-    if(n == 1)
-        return 1;
-
     num = malloc(sizeof(int) * (n + 1));
     memset(num, 0, sizeof(int) * (n + 1));
     num[1] = 1;

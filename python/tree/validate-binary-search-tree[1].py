@@ -6,7 +6,9 @@
 #         self.right = None
 
 class Solution(object):
-    lastnode = None
+    def __init__(self):
+        self.lastnode = None
+
     def isValidBST(self, root):
         if root is None:
             return True

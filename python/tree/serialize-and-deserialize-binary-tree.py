@@ -7,16 +7,17 @@
 
 class Codec:
     def serialize(self, root):
-        queue = [root]
+        queue = collections.deque()
         data = ''
+        queue.append(root)
         while queue:
-            node = queue.pop()
+            node = queue.popleft()
             if node is None:
                 data += 'null,'
             else:
                 data += str(node.val) + ','
-                queue.insert(0,node.left)
-                queue.insert(0,node.right)
+                queue.append(node.left)
+                queue.append(node.right)
 
 
         return '[' + data[0:-1] + ']'

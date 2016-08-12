@@ -3,15 +3,9 @@ class Solution(object):
         s = set()
 
         while True:
-            t = 0
             s.add(n)
-            while n > 0:
-                t += (n % 10) * (n % 10)
-                n /= 10
+            n = sum([int(x) * int(x) for x in list(str(n))])
+            if n == 1 or n in s:
+                break
 
-            if t == 1:
-                return True
-            if t in s:
-                return False
-
-            n = t
+        return n == 1

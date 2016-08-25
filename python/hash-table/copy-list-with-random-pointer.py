@@ -7,10 +7,6 @@
 
 class Solution(object):
     def copyRandomList(self, head):
-        """
-        :type head: RandomListNode
-        :rtype: RandomListNode
-        """
         root = RandomListNode(0)
         root.next = head
         while head:

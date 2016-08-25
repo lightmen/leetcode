@@ -11,9 +11,6 @@ struct RandomListNode *copyRandomList(struct RandomListNode *head) {
     struct RandomListNode *pre;
     struct RandomListNode *new_node;
 
-    if(head == NULL)
-        return NULL;
-
     root.next = head;
     while(head){
         new_node = malloc(sizeof(struct RandomListNode));
@@ -22,7 +19,6 @@ struct RandomListNode *copyRandomList(struct RandomListNode *head) {
         head->next = new_node;
         head = head->next->next;
     }
-
 
     head = root.next;
     while(head){

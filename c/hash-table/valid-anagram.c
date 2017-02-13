@@ -6,10 +6,10 @@ bool isAnagram(char* s, char* t) {
     if(s_len != t_len)
         return false;
 
-    for(i = 0; i < s_len; ++i)
+    for(i = 0; i < s_len; ++i){
         hash[s[i] - 'a']++;
-    for(i = 0; i < t_len; ++i)
         hash[t[i] - 'a']--;
+    }
 
     for(i = 0; i < 26; ++i)
         if(hash[i])

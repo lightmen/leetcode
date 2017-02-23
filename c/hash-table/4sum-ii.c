@@ -19,6 +19,7 @@ struct node *add_node(struct node *head, int key)
     cur = head;
     while(cur){
         if(cur->key == key){
+            free(new_node);
             cur->value++;
             break;
         }else if(cur->key > key){

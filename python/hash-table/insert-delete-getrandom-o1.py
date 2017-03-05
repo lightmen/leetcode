@@ -27,10 +27,8 @@ class RandomizedSet(object):
         """
         if val not in self.d:
             return False
-        if self.d[val] != len(self.l) - 1:
-            self.l[self.d[val]] = self.l[-1]
-            self.d[self.l[-1]] = self.d[val]
-
+        self.l[self.d[val]] = self.l[-1]
+        self.d[self.l[-1]] = self.d[val]
         self.l.pop()
         del self.d[val]
 

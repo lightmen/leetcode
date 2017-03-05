@@ -4,7 +4,7 @@ class RandomizedSet(object):
         """
         Initialize your data structure here.
         """
-        self.d = set()
+        self.d = {}
         self.l = []
 
     def insert(self, val):
@@ -15,8 +15,8 @@ class RandomizedSet(object):
         """
         if val in self.d:
             return False
-        self.d.add(val)
         self.l.append(val)
+        self.d[val] = len(self.l) - 1
         return True
 
     def remove(self, val):
@@ -27,9 +27,13 @@ class RandomizedSet(object):
         """
         if val not in self.d:
             return False
-        self.d.remove(val)
-        #del self.d[val]
-        self.l = list(self.d)
+        if self.d[val] != len(self.l) - 1:
+            self.l[self.d[val]] = self.l[-1]
+            self.d[self.l[-1]] = self.d[val]
+
+        self.l.pop()
+        del self.d[val]
+
         return True
 
     def getRandom(self):

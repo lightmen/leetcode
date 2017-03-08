@@ -32,5 +32,7 @@ class Solution(object):
                 prev = count
             if count == prev:
                 res.append(value)
+            else:
+                break
 
         return res

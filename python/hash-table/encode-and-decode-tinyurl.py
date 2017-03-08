@@ -1,7 +1,6 @@
 class Codec:
     def __init__(self):
-        self.ltos = {}
-        self.stol = {}
+        self.d = {}
         self.s = '0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM'
 
     def spliturl(self, url):
@@ -13,7 +12,7 @@ class Codec:
             short = ""
             for i in range(7):
                 short += random.choice(self.s)
-            if short not in self.stol:
+            if short not in self.d:
                 return short
 
         return ''
@@ -26,8 +25,7 @@ class Codec:
         """
         addr, long = self.spliturl(longUrl)
         short = self.getshort()
-        self.stol[short] = long
-        self.ltos[long] = short
+        self.d[short] = long
         return addr + short
 
     def decode(self, shortUrl):
@@ -37,7 +35,7 @@ class Codec:
         :rtype: str
         """
         addr, short = self.spliturl(shortUrl)
-        return addr + self.stol[short]
+        return addr + self.d[short]
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()

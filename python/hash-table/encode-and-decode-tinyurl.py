@@ -4,7 +4,7 @@ class Codec:
         self.s = '0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM'
 
     def spliturl(self, url):
-        index = url.rfind("/")
+        index = url.find("/",7)
         return url[0:index + 1], url[index+1:]
 
     def getshort(self):

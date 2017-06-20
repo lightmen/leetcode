@@ -1,6 +1,5 @@
 func searchInsert(nums []int, target int) int {
-    i := 0
-    j := len(nums) - 1
+    i, j := 0, len(nums) - 1
     for i <= j {
         mid := (i + j) >> 1
         if nums[mid] == target {

@@ -1,7 +1,15 @@
 func rotate(nums []int, k int)  {
     k %= len(nums)
-    r := make([]int, len(nums))
-    copy(r, nums[len(nums) - k:])
-    copy(r[k:], nums[:len(nums) - k])
-    copy(nums, r)
+
+    reverse(nums, 0, len(nums) - k - 1)
+    reverse(nums, len(nums) - k, len(nums) - 1)
+    reverse(nums, 0, len(nums) - 1)
+}
+
+func reverse(nums []int, start, end int){
+    for(start < end){
+        nums[start], nums[end] = nums[end], nums[start]
+        start++
+        end--
+    }
 }

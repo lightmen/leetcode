@@ -2,12 +2,12 @@ func containsNearbyDuplicate(nums []int, k int) bool {
     var mp map[int]int
     mp = make(map[int]int)
 
-    for i := 0; i < len(nums); i++ {
-        idx, ok := mp[nums[i]]
-        if(ok && i - idx <= k){
+    for idx, value := range nums {
+        key, ok := mp[value]
+        if(ok && idx - key <= k){
             return true
         }
-        mp[nums[i]] = i
+        mp[value] = idx
     }
 
     return false

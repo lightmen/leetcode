@@ -1,4 +1,4 @@
 # leetcode
-the algorithm codes of LeetCode OJ(https://leetcode.com/problemset/algorithms/)
+The slutions of [LeetCode Algorithms](https://leetcode.com/problemset/algorithms/)
 
-those codes are implemented by C, C++ and Python.
+those codes are implemented by C, C++, Python and Go.

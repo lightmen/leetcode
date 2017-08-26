@@ -14,12 +14,16 @@ func threeSumClosest(nums []int, target int) int {
         end := len(nums) - 1
         for start < end {
             sum :=  nums[i] + nums[start] + nums[end]
-            if abs(sum - target) < abs(ret - target) {
-                ret = sum
+            if sum == target {
+                return sum
             }else if sum > target {
                 end -= 1
             }else {
                 start += 1
+            }
+
+            if abs(sum - target) < abs(ret - target) {
+                ret = sum
             }
         }
     }

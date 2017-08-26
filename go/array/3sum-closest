@@ -1,0 +1,26 @@
+func abs(x int) int {
+    if x < 0 {
+        return -x
+    }
+
+    return x
+}
+
+func threeSumClosest(nums []int, target int) int {
+    curMin := 1<<31 - 1
+    ret := 0
+
+    for i := 0; i < len(nums); i += 1 {
+        for j := i + 1; j < len(nums); j += 1 {
+            for k := j + 1; k < len(nums); k += 1 {
+                tmp := nums[i] + nums[j] + nums[k]
+                if abs(target - tmp) < curMin {
+                    curMin = abs(target - tmp)
+                    ret = tmp
+                }
+            }
+        }
+    }
+
+    return ret
+}

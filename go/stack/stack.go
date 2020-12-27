@@ -35,3 +35,7 @@ func (s *Stack)IsEmpty() bool {
 
 	return false
 }
+
+func (s *Stack)Len() int {
+	return s.data.Len()
+}

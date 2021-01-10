@@ -28,3 +28,22 @@ func scoreOfParentheses(S string) int {
 
 	return st[top]
 }
+
+func scoreOfParentheses1(S string) int {
+	 dep := 0
+	 score := 0
+
+	for i := 0; i < len(S); i++ {
+		if S[i] == '(' {
+			dep++
+			continue
+		}
+
+		dep--
+		if S[i-1] == '(' {
+			score += (1 << dep)
+		}
+	}
+
+	return score
+}
